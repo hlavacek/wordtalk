@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
 const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
-
-const useSpeechRecognition = () => {
+/**
+ * React hook for speech recognition
+ * @returns
+ */
+const useSpeechRecognition = (continuous = true, lang = 'en-US') => {
   const [recording, setRecording] = useState<boolean>(false);
   const recognition = useRef<SpeechRecognition | null>(null);
   const [recognizedText, setRecognizedText] = useState<string>('');
@@ -11,8 +14,8 @@ const useSpeechRecognition = () => {
     setRecognizedText('');
     recognition.current = new SpeechRecognition();
 
-    recognition.current.continuous = true;
-    recognition.current.lang = 'en-US';
+    recognition.current.continuous = continuous;
+    recognition.current.lang = lang;
     recognition.current.interimResults = false;
     recognition.current.maxAlternatives = 1;
 

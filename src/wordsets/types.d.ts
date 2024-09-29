@@ -6,6 +6,6 @@ export type Wordset = {
 };
 
 export type Test = {
-  test: string;
+  phrase: string;
   translations: string[];
 };

@@ -5,19 +5,19 @@
   "targetLanguage": "en",
   "tests": [
     {
-      "test": "Január",
+      "phrase": "Január",
       "translations": ["January"]
     },
     {
-      "test": "Február",
+      "phrase": "Február",
       "translations": ["February"]
     },
     {
-      "test": "Marec",
+      "phrase": "Marec",
       "translations": ["March"]
     },
     {
-      "test": "Apríl",
+      "phrase": "Apríl",
       "translations": ["April"]
     }
   ]
