@@ -1,0 +1,24 @@
+{
+  "id": "months",
+  "name": "Mesiace",
+  "sourceLanguage": "sk",
+  "targetLanguage": "en",
+  "tests": [
+    {
+      "test": "Január",
+      "translations": ["January"]
+    },
+    {
+      "test": "Február",
+      "translations": ["February"]
+    },
+    {
+      "test": "Marec",
+      "translations": ["March"]
+    },
+    {
+      "test": "Apríl",
+      "translations": ["April"]
+    }
+  ]
+}
