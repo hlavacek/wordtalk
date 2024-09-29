@@ -11,11 +11,11 @@ type TestWordsetProps = {
 };
 
 const generateIndex = (wordset: Wordset, order: Order, currentIndex = 0) => {
-  let index = 0;
+  let index = currentIndex;
   if (order === 'random') {
     // make sure we don't pick up the same phrase
     while (index === currentIndex && wordset.tests.length > 1) {
-      index = Math.random() * wordset.tests.length;
+      index = Math.floor(Math.random() * wordset.tests.length);
     }
   } else {
     index = (currentIndex + 1) % wordset.tests.length;
@@ -23,13 +23,13 @@ const generateIndex = (wordset: Wordset, order: Order, currentIndex = 0) => {
   return index;
 };
 
-function TestWordset({ wordset, order = 'cycle' }: TestWordsetProps) {
+function TestWordset({ wordset, order = 'random' }: TestWordsetProps) {
   const { startRecording, stopRecording, recording, recognizedText } =
     useSpeechRecognition();
   const [testPhraseIndex, setTestPhraseIndex] = useState<number>(0);
   const [matchedCount, setMatchedCount] = useState<number>(0);
 
-  // generate initial index
+  // generate next word
   useEffect(() => {
     setTestPhraseIndex((currentIndex) =>
       generateIndex(wordset, order, currentIndex)
@@ -55,14 +55,14 @@ function TestWordset({ wordset, order = 'cycle' }: TestWordsetProps) {
       {recording ? (
         <IconButton
           onClick={stopRecording}
-          className="size-12"
-          icon={<StopIcon className="size-6" />}
+          className="size-20 bg-turquoise-700"
+          icon={<StopIcon className="size-10" />}
         />
       ) : (
         <IconButton
           onClick={startRecording}
-          className="size-12"
-          icon={<MicrophoneIcon className="size-6" />}
+          className="size-20"
+          icon={<MicrophoneIcon className="size-10" />}
         />
       )}
     </>

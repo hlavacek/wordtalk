@@ -19,6 +19,38 @@
     {
       "phrase": "Apríl",
       "translations": ["April"]
+    },
+    {
+      "phrase": "Máj",
+      "translations": ["May"]
+    },
+    {
+      "phrase": "Jún",
+      "translations": ["June"]
+    },
+    {
+      "phrase": "Júl",
+      "translations": ["July"]
+    },
+    {
+      "phrase": "August",
+      "translations": ["August"]
+    },
+    {
+      "phrase": "September",
+      "translations": ["September"]
+    },
+    {
+      "phrase": "Október",
+      "translations": ["October"]
+    },
+    {
+      "phrase": "November",
+      "translations": ["November"]
+    },
+    {
+      "phrase": "December",
+      "translations": ["December"]
     }
   ]
 }
