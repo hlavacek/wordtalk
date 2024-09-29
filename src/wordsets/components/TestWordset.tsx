@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 type Order = 'random' | 'cycle';
 type TestWordsetProps = {
   wordset: Wordset;
-  order: Order;
+  order?: Order;
 };
 
 const generateIndex = (wordset: Wordset, order: Order, currentIndex = 0) => {
