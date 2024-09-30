@@ -33,6 +33,7 @@ const useSpeechRecognition = (continuous = true, lang = 'en-US') => {
         if (continuous) {
           // restart the recording if it is continuous
           recognition.current?.start();
+          setRecording(true);
         }
       }
     };
