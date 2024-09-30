@@ -7,23 +7,34 @@ const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
  */
 const useSpeechRecognition = (continuous = true, lang = 'en-US') => {
   const [recording, setRecording] = useState<boolean>(false);
+  const [explicitStop, setExplicitStop] = useState<boolean>(false);
   const recognition = useRef<SpeechRecognition | null>(null);
   const [recognizedText, setRecognizedText] = useState<string>('');
 
   const startRecording = () => {
     setRecognizedText('');
-    recognition.current = new SpeechRecognition();
+    setExplicitStop(false);
 
-    recognition.current.continuous = continuous;
-    recognition.current.lang = lang;
-    recognition.current.interimResults = false;
-    recognition.current.maxAlternatives = 1;
+    if (!recognition.current) {
+      recognition.current = new SpeechRecognition();
+
+      recognition.current.continuous = continuous;
+      recognition.current.lang = lang;
+      recognition.current.interimResults = false;
+      recognition.current.maxAlternatives = 1;
+    }
 
     recognition.current.start();
 
     recognition.current.onend = () => {
-      recognition.current = null;
-      setRecording(false);
+      if (explicitStop) {
+        setRecording(false);
+      } else {
+        if (continuous) {
+          // restart the recording if it is continuous
+          recognition.current?.start();
+        }
+      }
     };
 
     recognition.current.onresult = (event) => {
@@ -35,10 +46,12 @@ const useSpeechRecognition = (continuous = true, lang = 'en-US') => {
   };
 
   const stopRecording = () => {
+    setExplicitStop(true);
+
     if (recognition.current) {
       recognition.current.stop();
-      recognition.current = null;
     }
+
     setRecording(false);
   };
 

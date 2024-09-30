@@ -46,10 +46,19 @@ function TestWordset({ wordset, order = 'random' }: TestWordsetProps) {
     }
   }, [recognizedText, testPhraseIndex, wordset.tests]);
 
+  useEffect(() => {
+    // recognize stop word
+    if (recognizedText.toLowerCase().endsWith(' stop')) {
+      stopRecording();
+    }
+  }, [recognizedText, stopRecording]);
+
   return (
     <>
-      <h2>Testing wordset: {wordset.name}</h2>
-      <h3>Test phrase: {wordset.tests[testPhraseIndex].phrase}</h3>
+      <h1 className="text-sm">Testing wordset: {wordset.name}</h1>
+      <h3 className="text-3xl mt-4 mb-4">
+        {wordset.tests[testPhraseIndex].phrase}
+      </h3>
       <h3>{recognizedText}</h3>
       <h3>Your points: {matchedCount}</h3>
       {recording ? (
